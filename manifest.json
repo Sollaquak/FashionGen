@@ -1,0 +1,10 @@
+{
+    "name": "EcoShop",
+    "description": "Check if the company and products are sustainable",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": "assets/default_icon.png"
+    }
+  }
