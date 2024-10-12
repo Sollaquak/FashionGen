@@ -1,3 +1,6 @@
+import data from './website-data.json' assert { type: 'json'};
+
+
 const websiteData = {
     "amazon.com/fashion": {"People": 20, "Animal": 10, "Planet": 30},
     "asos.com": {"People": 40, "Animal": 35, "Planet": 50},
@@ -184,4 +187,4 @@ const websiteData = {
     }
     
 console.log("Nike")
-console.log(websiteData["nike.com"])
+console.log(data["nike.com"])
