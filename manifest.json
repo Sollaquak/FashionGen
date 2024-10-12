@@ -1,10 +1,12 @@
 {
-    "name": "EcoShop",
-    "description": "Check if the company and products are sustainable",
-    "version": "1.0",
-    "manifest_version": 3,
-    "action": {
-      "default_popup": "index.html",
-      "default_icon": "assets/default_icon.png"
-    }
+  "manifest_version": 3,
+  "name": "ESG Rating Checker",
+  "version": "1.0",
+  "permissions": ["activeTab"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
   }
+}
