@@ -1,9 +1,30 @@
 {
   "manifest_version": 3,
-  "name": "ESG Rating Checker",
+  "name": "Sustainability Helper",
   "version": "1.0",
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "contextMenus", "clipboardWrite"],
   "action": {
-    "default_popup": "popup.html"
-  }
+    "default_popup": "popup.html",
+    "default_icon": "/assets/icon128.png"
+  },
+  "icons":{
+        "16": "/assets/icon16.png",
+        "32": "/assets/icon32.png",
+        "48": "/assets/icon48.png",
+        "128": "/assets/icon128.png"
+    },
+  "web_accessible_resources": [{
+  "matches": ["<all_urls>"],
+  "resources": ["/assets/Logo.png"]
+    }],
+  "background": {
+      "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["main.js"],
+      "type": "module"
+    }
+  ]
 }

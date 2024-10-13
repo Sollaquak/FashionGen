@@ -1,0 +1,124 @@
+body{
+    border: 2px solid green;
+    margin: 0;
+    font-family: 'Inter', Courier, monospace, sans-serif;
+    height: 400px;
+    min-width: 300px;
+    width: max-content;
+    background-color: #ede4e4;
+}
+
+/* Container for the logo and the main content */
+.main-container {
+    box-sizing: border-box;
+    border: 2px solid orange;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    flex-direction: column; /* Puts the Company Section and Product Section vertically */
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+/* Logo container */
+.logo {
+    height: 40px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    border: 2px solid blue;
+    text-align: left;
+    background-color: #fff;
+    min-height: 400px;
+    width: 100%;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.header{
+    margin-bottom: 1px;
+}
+span {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.highlight {
+    display: flex;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #0073e6;
+    padding-top: 5px;
+    white-space: nowrap; 
+    overflow: visible;
+}
+
+.rating-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.rating-bar-fill {
+    height: 100%;
+    background-color: #0073e6;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Second Container */
+#second-container{
+    border: 2px solid red;
+    box-sizing: border-box;
+    min-height: 400px;
+    width: 100%;
+}
+
+/* Recommendation Carousel */
+
+.carousel-cell {
+    width: 66%;
+    height: 270px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background: #8C8;
+    counter-increment: gallery-cell;
+}
+
+.carousel-cell:before{ /* This is for the text that will give brand, price, and overall score */
+    display: block;
+    text-align: center;
+    content: "Hello World";
+    line-height: 00px;
+    font-size: 80px;
+    color: white;
+}
+
+.flickity-page-dots{
+    display: none;
+}
+
+/* no circle */
+.flickity-prev-next-button {
+    width: 100px !important;
+    height: 100px !important;
+    background: transparent !important;
+}
+
+.flickity-prev-next-button .arrow {
+    fill: white;
+  }
+
+.flickity-prev-next-button:disabled {
+    display: none;
+}

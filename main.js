@@ -1,3 +1,23 @@
+// Event Listeners for Scroll Buttons
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('scroll-down-button').addEventListener('click', function () {
+        document.getElementById("second-container").scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('scroll-up-button').addEventListener('click', function () {
+        document.getElementById("container").scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+
+// Gets domain name
+
 async function fetchDomain() {
     return new Promise((resolve, reject) => {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -12,19 +32,15 @@ async function fetchDomain() {
     });
 }
 
-async function loadData(domain) {
+// Fetches data from JSON
+async function fetchData(domain) {
     try {
-        const response = await fetch('./website-data.json');
+        const response = await fetch('./data/website-scores.json');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const jsonData = await response.json();
-
-        // Access the data
         const fashionData = jsonData.data;
-
-        // Return the data for the specified domain
-        console.log(fashionData[domain]);
         return fashionData[domain] || null; // Return null if domain is not found
         
     } catch (error) {
@@ -33,18 +49,74 @@ async function loadData(domain) {
     }
 }
 
-const domain = await fetchDomain();
-const data = await loadData(domain);
-console.log(data);
+async function init() {
+    const domain = await fetchDomain();
+    const data = await fetchData(domain);
+    
+    if (data) {
+        // Calculate overall score
+        const overall = (data.People + data.Planet + data.Animal) / 3;
 
-const websiteNameElement = document.getElementById("websiteName")
-const peopleElement = document.getElementById("people");
-const planetElement = document.getElementById("planet");
-const animalElement = document.getElementById("animal");
+        // Get all the HTML elements
+        const websiteNameElement = document.getElementById("websiteName");
+        const peopleBarElement = document.getElementById("peopleBar");
+        const planetBarElement = document.getElementById("planetBar");
+        const animalBarElement = document.getElementById("animalBar");
+        const overallBarElement = document.getElementById("overallBar");
 
-websiteNameElement.textContent = domain.split('.')[0].toUpperCase();
-peopleElement.textContent = data.People;
-planetElement.textContent = data.Planet;
-animalElement.textContent = data.Animal;
+        // Adjust HTML elements
+        websiteNameElement.textContent = domain.split('.')[0].toUpperCase();
+        peopleBarElement.style.width = '0%'; // Start at 0%
+        planetBarElement.style.width = '0%'; // Start at 0%
+        animalBarElement.style.width = '0%'; // Start at 0%
+        overallBarElement.style.width = '0%'; // Start at 0%
 
+        function getBarColor(value) {
+            if (value >= 70) {
+                return '#0CC078';
+            } else if (value >= 30) {
+                return '#ffdc2e';    
+            } else {
+                return '#FB4747';
+            }
+        }
 
+        // Function to animate the filling of the progress bars
+        function animateProgressBar(barElement, targetValue) {
+            barElement.style.backgroundColor = getBarColor(targetValue); // Set color based on value
+            let width = 0;
+
+            const interval = setInterval(() => {
+                if (width >= targetValue) {
+                    clearInterval(interval);
+                } else {
+                    width++;
+                    barElement.style.width = width + '%';
+                }
+            }, 20); // Adjust the speed of the animation here
+        }
+
+        // Animate each progress bar using the loaded data
+        animateProgressBar(overallBarElement, overall);
+        animateProgressBar(planetBarElement, data.Planet);
+        animateProgressBar(peopleBarElement, data.People);
+        animateProgressBar(animalBarElement, data.Animal);
+
+        
+    }
+}
+
+// Initialize the script
+console.log("Content script loaded"); // Check if this logs to the console
+chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
+    if (request.action === "showImageUrl") {
+        console.log("Image URL received:", request.imageUrl);
+    }
+
+    const url = request.imageUrl;
+    const description = await callGPT(url);
+    console.log("description from main:", description);
+});
+
+console.log("Content loaded");
+init();

@@ -1,12 +1,72 @@
-<html>
-  <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="flickity.min.css" media="screen">
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- Main Content Section -->
+        <div id="container">
+            <div class="logo">
+                <img src="/assets/Logo.png" alt="Company Logo" />
+            </div>
+            
+            <span class="highlight" id="websiteName">Company Name</span>
+
+            <span class="header" id="overall">Overall<span>
+            <div class="rating-bar">
+                <div class="rating-bar-fill" id="overallBar" style="width: 0%;"></div>
+            </div>
+            
+            <span class="header" id="planet">Planet</span>
+            <div class="rating-bar">
+                <div class="rating-bar-fill" id="planetBar" style="width: 0%;"></div>
+            </div>
+            
+            <span class="header" id="people">People</span>
+            <div class="rating-bar">
+                <div class="rating-bar-fill" id="peopleBar" style="width: 0%;"></div>
+            </div>
+
+            <span class="header" id="animal">Animal</span>
+            <div class="rating-bar">
+                <div class="rating-bar-fill" id="animalBar" style="width: 0%;"></div>
+            </div>
+            
+            <div class="highlight">
+                <button id="scroll-down-button"></button>
+            </div>
+            
+        </div>
+
+
+        <div id="second-container">
+            <div class="highlight">
+                <button id="scroll-up-button"></button>
+            </div>
+
+            <span class="highlight" id="websiteName">Product Name</span>
+
+
+            <div class="carousel" data-flickity='{ "freeScroll": false }'>
+                <div class="carousel-cell"></div>
+                <div class="carousel-cell"></div>
+                <div class="carousel-cell"></div>
+                <div class="carousel-cell"></div>
+                <div class="carousel-cell"></div>
+            </div>
+
+        </div> 
+    </div>
+
+        
+    <!-- Include main.js first to load data -->
     <script type="module" src="main.js"></script>
-    <h1>EcoShop</h1>
-
-    <h2 id="websiteName"></h2>
-
-    <h4>Planet: <p id="planet"></p></h4>
-    <h4>People: <p id="people"></p></h4>
-    <h4>Animal: <p id="animal"></p></h4>
-  </body>
+    <!-- Include flickity for carousel. On skibbidy-->
+    <script src="flickity.pkgd.min.js"></script>
+</body>
 </html>
