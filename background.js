@@ -4,6 +4,7 @@
 // import { checkAndWriteToJsonFile } from "./write-to-json";
 
 // const JSON_FILE_PATH = './data/image-descs.json'
+importScripts('gpt-call.js')
 
 // Create the context menu
 chrome.runtime.onInstalled.addListener(() => {

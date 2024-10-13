@@ -17,7 +17,7 @@ body{
     width: 100%;
     align-items: center;
     flex-direction: column; /* Puts the Company Section and Product Section vertically */
-    overflow-y: auto;
+    overflow-y: hidden;
     box-sizing: border-box;
 }
 
@@ -29,7 +29,7 @@ body{
     justify-content: center;
 }
 
-.container {
+#container {
     border: 2px solid blue;
     text-align: left;
     background-color: #fff;
@@ -55,7 +55,7 @@ span {
     color: #0073e6;
     padding-top: 5px;
     white-space: nowrap; 
-    overflow: visible;
+    /* overflow: visible; */
 }
 
 .rating-bar {
@@ -75,6 +75,26 @@ span {
     top: 0;
     left: 0;
 }
+
+#scroll-down-button, #scroll-up-button{
+    background: url(/assets/chevron-down.svg) center no-repeat;
+    border-radius: 10px;
+    width: 60px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    transition: background-color 0.25s ease;
+}
+
+#scroll-up-button{
+    background: url(/assets/chevron-up.svg) center no-repeat;
+}
+
+#scroll-down-button:hover, #scroll-up-button:hover{
+    background-color: #0073e6;
+}
+
 
 /* Second Container */
 #second-container{
